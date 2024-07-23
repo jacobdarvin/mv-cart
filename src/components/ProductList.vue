@@ -42,7 +42,7 @@ export default defineComponent({
 
     const products = computed(() => productStore.products)
 
-    const viewProduct = (id: number) => {
+    const viewProduct = (id: string) => {
       router.push(`/product/${id}`)
     }
 

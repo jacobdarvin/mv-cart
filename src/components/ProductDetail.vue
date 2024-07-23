@@ -45,7 +45,7 @@ export default defineComponent({
     const productStore = useProductStore()
     const product = ref<any>(null)
 
-    const fetchProduct = async (productId: number) => {
+    const fetchProduct = async (productId: string) => {
       try {
         const response = await fetch(`http://localhost:4000/api/products/${productId}`)
         if (!response.ok) {
@@ -59,7 +59,7 @@ export default defineComponent({
     }
 
     onMounted(async () => {
-      const productId = Number(route.params.id)
+      const productId = route.params.id as string
       const storeProduct = productStore.products.find((product) => product.id === productId)
       if (storeProduct) {
         product.value = storeProduct

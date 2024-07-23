@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
 export interface Product {
-    id: number
+    id: string
     name: string
     description: string
     price: number
@@ -9,7 +9,7 @@ export interface Product {
 }
 
 export interface CartItem {
-    id: number
+    id: string
     name: string
     price: number
     quantity: number
@@ -43,7 +43,7 @@ export const useProductStore = defineStore('product', {
             }
             this.saveCart()
         },
-        removeFromCart(productId: number) {
+        removeFromCart(productId: string) {
             this.cart = this.cart.filter(item => item.id !== productId)
             this.saveCart()
         },
