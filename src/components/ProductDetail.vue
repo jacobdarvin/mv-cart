@@ -51,7 +51,8 @@ export default defineComponent({
         if (!response.ok) {
           throw new Error('Network response was not ok')
         }
-        return await response.json()
+        const result = await response.json()
+        return result.data
       } catch (error) {
         console.error('Error fetching product:', error)
         return null
