@@ -55,5 +55,10 @@ export const useProductStore = defineStore('product', {
             console.log('saving cart!')
             localStorage.setItem('cart', JSON.stringify(this.cart))
         }
+    },
+    getters: {
+        totalItemsInCart: (state) => {
+            return state.cart.reduce((total, item) => total + item.quantity, 0)
+        }
     }
 })

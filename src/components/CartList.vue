@@ -2,7 +2,7 @@
   <div class="container mx-auto p-8">
     <nav class="flex justify-between items-center border p-4 rounded-lg">
       <div class="flex items-center gap-4">
-        <h2 class="text-4xl font-bold">Cart 🛒</h2>
+        <h2 class="text-4xl font-bold">Cart</h2>
       </div>
       <button
         @click="goBack"
@@ -66,25 +66,34 @@ export default defineComponent({
     }
 
     const confirmPurchase = async () => {
-      const response = await fetch('http://localhost:4000/api/purchase', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          user_id: 1,
-          items: productStore.cart.map((item) => ({
-            product_id: item.id,
-            quantity: item.quantity
-          }))
+      try {
+        const userId = 1
+        const items = cart.value.map((item) => ({
+          product_id: item.id,
+          quantity: item.quantity
+        }))
+
+        const response = await fetch('http://localhost:4000/api/purchase', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ user_id: userId, items })
         })
-      })
-      const data = await response.json()
-      if (response.ok) {
-        alert('Purchase confirmed!')
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+
+        const result = await response.json()
+        console.log('Purchase confirmed:', result)
+
         productStore.clearCart()
-      } else {
-        alert('Failed to confirm purchase: ' + data.error)
+
+        alert('Purchase successful!')
+      } catch (error) {
+        console.error('Error confirming purchase:', error)
+        alert('Failed to confirm purchase. Please try again.')
       }
     }
 
