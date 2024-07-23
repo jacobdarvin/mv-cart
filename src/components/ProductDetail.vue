@@ -13,13 +13,13 @@
       <div class="flex w-full gap-4">
         <button
           @click="goBack"
-          class="bg-white hover:invert w-full transition border border-black text-2xl rounded-lg p-2"
+          class="bg-white hover:invert w-full transition border border-black rounded-lg p-2"
         >
           Back
         </button>
         <button
           @click="addToCart(product)"
-          class="bg-black hover:invert w-full transition border border-white text-white text-2xl rounded-lg p-2"
+          class="bg-black hover:invert w-full transition border border-white text-white rounded-lg p-2"
         >
           Add to Cart
         </button>
