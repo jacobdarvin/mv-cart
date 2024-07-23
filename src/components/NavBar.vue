@@ -5,16 +5,16 @@
     </div>
     <div class="flex gap-2">
       <button
-        class="bg-white border-black border hover:invert transition rounded-lg p-2 px-4 flex items-center"
-      >
-        Login
-      </button>
-      <button
         @click="viewCart"
         class="bg-white border-black border hover:invert transition rounded-lg p-2 px-4 flex items-center"
       >
         <span class="font-bold">{{ totalItems }}</span
         >&nbsp;Cart
+      </button>
+      <button
+        class="bg-white border-black border hover:invert transition rounded-lg p-2 px-4 flex items-center"
+      >
+        Login
       </button>
     </div>
   </nav>
