@@ -49,7 +49,7 @@ export const useProductStore = defineStore('product', {
         },
         clearCart() {
             this.cart = []
-            this.saveCart()
+            this.saveCart() // I can save this in session storage
         },
         saveCart() {
             console.log('saving cart!')

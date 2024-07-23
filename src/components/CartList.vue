@@ -2,11 +2,11 @@
   <div class="container mx-auto p-8">
     <nav class="flex justify-between items-center border p-4 rounded-lg">
       <div class="flex items-center gap-4">
-        <h2 class="text-4xl font-bold">Cart</h2>
+        <h2 class="text-4xl font-bold">Cart 🛒</h2>
       </div>
       <button
         @click="goBack"
-        class="bg-white border-black border rounded-lg p-2 px-4 flex items-center"
+        class="bg-white border-black border hover:invert transition rounded-lg p-2 px-4 flex items-center"
       >
         Back to Products
       </button>
@@ -28,13 +28,15 @@
         </div>
       </div>
       <div v-else>
-        <p class="text-2xl">Your cart is empty</p>
+        <p class="text-2xl">Your cart is empty.</p>
       </div>
       <div v-if="cart.length > 0" class="mt-4">
-        <p>Total: $ {{ total }}</p>
+        <p class="text-4xl">
+          Total: <span class="font-bold">${{ total }}</span>
+        </p>
         <button
           @click="confirmPurchase"
-          class="bg-black border border-white hover:invert transition w-full text-white rounded-lg p-2"
+          class="bg-black border border-white hover:invert transition w-full text-white rounded-lg p-2 mt-4"
         >
           Confirm Purchase
         </button>
