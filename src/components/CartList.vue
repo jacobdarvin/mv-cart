@@ -52,49 +52,47 @@ import { useRouter } from 'vue-router'
 
 export default defineComponent({
   setup() {
-    const productStore = useProductStore()
     const router = useRouter()
-
+    const productStore = useProductStore()
     const cart = computed(() => productStore.cart)
+
+    const confirmPurchase = async () => {
+      try {
+        for (const item of cart.value) {
+          const response = await fetch('http://localhost:4000/api/purchases', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              purchase: {
+                product_id: item.id,
+                quantity: item.quantity
+              }
+            })
+          })
+
+          if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`)
+          }
+
+          const data = await response.json()
+          console.log('Purchase confirmed for:', data)
+        }
+        productStore.clearCart()
+        alert('Purchase confirmed!')
+      } catch (error) {
+        console.error('Error confirming purchase:', error)
+        alert('There was an error processing your purchase. Please try again.')
+      }
+    }
 
     const total = computed(() => {
       return productStore.cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
     })
 
-    const removeFromCart = (productId: number) => {
+    const removeFromCart = (productId: string) => {
       productStore.removeFromCart(productId)
-    }
-
-    const confirmPurchase = async () => {
-      try {
-        const userId = 1
-        const items = cart.value.map((item) => ({
-          product_id: item.id,
-          quantity: item.quantity
-        }))
-
-        const response = await fetch('http://localhost:4000/api/purchase', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ user_id: userId, items })
-        })
-
-        if (!response.ok) {
-          throw new Error('Network response was not ok')
-        }
-
-        const result = await response.json()
-        console.log('Purchase confirmed:', result)
-
-        productStore.clearCart()
-
-        alert('Purchase successful!')
-      } catch (error) {
-        console.error('Error confirming purchase:', error)
-        alert('Failed to confirm purchase. Please try again.')
-      }
     }
 
     const goBack = () => {
