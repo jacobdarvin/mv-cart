@@ -1,15 +1,20 @@
 <template>
-  <div>
+  <div class="container mx-auto p-8">
     <nav class="flex justify-between items-center border p-4 rounded-lg">
-      <div class="flex items-center gap-4">
+      <div class="flex items-center">
         <h2 class="text-4xl font-bold">Product Page</h2>
       </div>
-      <button
-        @click="viewCart"
-        class="bg-white border-black border rounded-lg p-2 px-4 flex items-center"
-      >
-        Cart
-      </button>
+      <div class="flex gap-2">
+        <button class="bg-white border-black border rounded-lg p-2 px-4 flex items-center">
+          Login
+        </button>
+        <button
+          @click="viewCart"
+          class="bg-white border-black border hover:invert transition rounded-lg p-2 px-4 flex items-center"
+        >
+          Cart
+        </button>
+      </div>
     </nav>
     <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-4">
       <div
@@ -24,7 +29,7 @@
         </div>
         <button
           @click="addToCart(product)"
-          class="bg-black hover:bg-white hover:text-black hover:border-black border border-white text-white rounded-lg p-2"
+          class="bg-black hover:invert transition border border-white text-white rounded-lg p-2"
         >
           Add to Cart
         </button>
@@ -35,6 +40,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { useProductStore } from '@/stores/productStore'
 
 interface Product {
@@ -48,6 +54,7 @@ interface Product {
 export default defineComponent({
   setup() {
     const productStore = useProductStore()
+    const router = useRouter()
 
     onMounted(() => {
       productStore.fetchProducts()
@@ -59,7 +66,9 @@ export default defineComponent({
       productStore.addToCart(product)
     }
 
-    const viewCart = () => {}
+    const viewCart = () => {
+      router.push('/cart')
+    }
 
     return {
       products,
