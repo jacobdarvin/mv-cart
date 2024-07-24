@@ -99,7 +99,6 @@ export default defineComponent({
           console.log('Purchase confirmed for:', data)
         }
         productStore.clearCart()
-        alert('Purchase confirmed!')
         router.push('/') // Update this to use success page
       } catch (error) {
         console.error('Error confirming purchase:', error)
