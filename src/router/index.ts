@@ -18,13 +18,13 @@ const routes = [
     path: '/register', name: 'Register', component: RegisterView
   },
   {
-    path: '/', name: 'Products', component: ProductView, meta: { requiresAuth: false }
+    path: '/', name: 'Products', component: ProductView, meta: { requiresAuth: true }
   },
   {
-    path: '/cart', name: 'Cart', component: CartView, meta: { requiresAuth: false }
+    path: '/cart', name: 'Cart', component: CartView, meta: { requiresAuth: true }
   },
   {
-    path: '/product/:id', name: 'Detail', component: ProductDetail, props: true, meta: { requiresAuth: false }
+    path: '/product/:id', name: 'Detail', component: ProductDetail, props: true, meta: { requiresAuth: true }
   }
 ]
 

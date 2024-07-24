@@ -60,12 +60,15 @@ export default {
 
     const login = async () => {
       try {
-        const response = await fetch('http://localhost:4000/login', {
+        const response = await fetch('http://localhost:4000/api/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ email: email.value, password: password.value })
+
+          body: JSON.stringify({
+            user: { email: email.value, password: password.value }
+          })
         })
         const data = await response.json()
         if (data.success) {
