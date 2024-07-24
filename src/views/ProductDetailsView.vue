@@ -1,32 +1,34 @@
 <template>
-  <div class="container mx-auto p-8">
-    <NavBar />
-    <div class="flex flex-col w-full mt-4 gap-4" v-if="product">
-      <div class="border p-4 rounded-lg flex-1">
-        <h2 class="text-4xl font-bold">{{ product.name }}</h2>
-        <div>
-          <p>{{ product.description }}</p>
-          <p>$ {{ product.price }}</p>
-          <p v-if="product.quantity">Quantity: {{ product.quantity }}</p>
+  <div class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto p-8">
+      <NavBar />
+      <div class="flex flex-col w-full mt-4 gap-4" v-if="product">
+        <div class="bg-white border p-4 rounded-lg flex-1">
+          <h2 class="text-4xl font-bold">{{ product.name }}</h2>
+          <div>
+            <p>{{ product.description }}</p>
+            <p>$ {{ product.price }}</p>
+            <p v-if="product.quantity">Quantity: {{ product.quantity }}</p>
+          </div>
+        </div>
+        <div class="flex w-full gap-4">
+          <router-link
+            to="/"
+            class="bg-white hover:invert w-full transition border border-black rounded-lg p-2 text-center"
+          >
+            Back to Products
+          </router-link>
+          <button
+            @click="addToCart(product)"
+            class="bg-black hover:invert w-full transition border border-white text-white rounded-lg p-2"
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
-      <div class="flex w-full gap-4">
-        <router-link
-          to="/"
-          class="bg-white hover:invert w-full transition border border-black rounded-lg p-2 text-center"
-        >
-          Back to Products
-        </router-link>
-        <button
-          @click="addToCart(product)"
-          class="bg-black hover:invert w-full transition border border-white text-white rounded-lg p-2"
-        >
-          Add to Cart
-        </button>
+      <div v-else>
+        <p>Loading...</p>
       </div>
-    </div>
-    <div v-else>
-      <p>Loading...</p>
     </div>
   </div>
 </template>

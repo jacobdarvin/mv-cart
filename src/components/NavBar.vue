@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex justify-between items-center border p-4 rounded-lg">
+  <nav class="flex justify-between items-center border p-4 rounded-lg bg-white">
     <div class="flex items-center">
       <h2 class="text-4xl font-bold">Product Page</h2>
     </div>

@@ -6,9 +6,9 @@ import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 
 import ProductView from '@/views/ProductView.vue'
-import ProductDetail from '@/components/ProductDetail.vue'
 
 import CartView from '@/views/CartView.vue'
+import ProductDetailsView from '@/views/ProductDetailsView.vue'
 
 const routes = [
   {
@@ -18,14 +18,14 @@ const routes = [
     path: '/register', name: 'Register', component: RegisterView
   },
   {
-    path: '/', name: 'Products', component: ProductView, meta: { requiresAuth: true }
+    path: '/', name: 'Product', component: ProductView, meta: { requiresAuth: true }
+  },
+  {
+    path: '/product/:id', name: 'Product Details', component: ProductDetailsView, props: true, meta: { requiresAuth: true }
   },
   {
     path: '/cart', name: 'Cart', component: CartView, meta: { requiresAuth: true }
   },
-  {
-    path: '/product/:id', name: 'Detail', component: ProductDetail, props: true, meta: { requiresAuth: true }
-  }
 ]
 
 const router = createRouter({
