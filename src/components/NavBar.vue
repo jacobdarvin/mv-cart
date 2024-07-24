@@ -1,13 +1,22 @@
 <template>
   <nav class="flex justify-between items-center border p-4 rounded-lg bg-white">
-    <h2 class="text-4xl font-bold">Product Page</h2>
-    <div class="flex gap-4 items-center">
-      <button @click="logout" class="underline">Logout</button>
-      <router-link to="/cart" class="underline">
-        <span class="font-bold">{{ totalItems }}</span
-        >&nbsp;Cart
-      </router-link>
-      <span class="font-bold">${{ balance }}</span>
+    <div>
+      <h2 class="text-4xl font-bold">COP'D</h2>
+      <div class="flex">
+        <p class="text-xs">
+          /kɒpt/ the act of purchasing a new <span class="font-bold underline">release</span>
+        </p>
+      </div>
+    </div>
+    <div class="flex flex-col flex-end">
+      <div class="flex gap-3 items-center">
+        <router-link to="/cart" class="underline">
+          <span class="font-bold">{{ totalItems }}</span
+          >&nbsp;Cart
+        </router-link>
+        <span class="font-bold">${{ balance }}</span>
+      </div>
+      <button @click="logout" class="underline text-xs text-right">{{ ' ' }} Logout</button>
     </div>
   </nav>
 </template>
