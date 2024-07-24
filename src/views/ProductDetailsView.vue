@@ -31,17 +31,18 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
           <button
-            @click="removeFromCart(product.id)"
-            class="bg-black hover:invert col-span-1 md:col-span-1 transition border border-white text-white rounded-lg p-2"
-          >
-            Remove from Cart
-          </button>
-          <button
             @click="addToCart(product)"
             :disabled="isAddToCartDisabled"
-            class="bg-black hover:invert col-span-1 md:col-span-1 transition border border-white text-white rounded-lg p-2 disabled:opacity-25 disabled:invert"
+            class="bg-black hover:invert transition border border-white text-white rounded-lg p-2 disabled:opacity-25 disabled:invert"
           >
             Add to Cart
+          </button>
+          <button
+            @click="removeFromCart(product.id)"
+            v-if="cartQuantity > 0"
+            class="bg-black hover:invert transition border border-white text-white rounded-lg p-2"
+          >
+            Remove from Cart
           </button>
         </div>
         <div v-if="cartQuantity > 0" class="flex w-full">
