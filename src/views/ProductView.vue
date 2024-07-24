@@ -16,7 +16,7 @@
             />
             <div
               v-if="product.quantity === 0"
-              class="absolute inset-0 flex items-center rounded-lg justify-center"
+              class="absolute inset-0 flex items-center rounded-lg justify-center backdrop-blur-sm bg-white bg-opacity-5"
             >
               <span class="absolute text-2xl font-bold p-8 marquee"
                 >OUT OF STOCK • OUT OF STOCK • OUT OF STOCK • OUT OF STOCK • OUT OF STOCK • OUT OF
