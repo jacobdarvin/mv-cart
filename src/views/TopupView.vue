@@ -9,6 +9,19 @@
         <div class="border rounded-lg bg-white p-8">
           <form @submit.prevent="handleSubmit">
             <div class="mb-4">
+              <label for="cardholderName" class="block text-sm font-medium text-gray-700"
+                >Cardholder's Name</label
+              >
+              <input
+                type="text"
+                id="cardholderName"
+                v-model="cardholderName"
+                placeholder="John Doe"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
+                required
+              />
+            </div>
+            <div class="mb-4">
               <label for="cardNumber" class="block text-sm font-medium text-gray-700"
                 >Card Number</label
               >
@@ -89,28 +102,56 @@
 <script lang="ts">
 import NavBar from '@/components/NavBar.vue'
 import { defineComponent, ref } from 'vue'
+import { useAuthStore } from '@/stores/authStore'
 
 export default defineComponent({
   components: { NavBar },
   setup() {
+    const authStore = useAuthStore()
+
+    const cardholderName = ref('')
     const cardNumber = ref('')
     const cvc = ref('')
     const expirationDate = ref('')
     const amount = ref<number | null>(null)
     const address = ref('')
 
-    const handleSubmit = () => {
-      // Handle the form submission logic here
-      console.log('Top-up details:', {
+    const handleSubmit = async () => {
+      const topUpDetails = {
+        cardholderName: cardholderName.value,
         cardNumber: cardNumber.value,
         cvc: cvc.value,
         expirationDate: expirationDate.value,
         amount: amount.value,
         address: address.value
-      })
+      }
+
+      console.log('Top-up details:', topUpDetails)
+
+      try {
+        const response = await fetch('http://localhost:4000/api/wallets/top_up', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${authStore.token}`
+          },
+          body: JSON.stringify({ wallet: { amount: topUpDetails.amount?.toFixed(2) } })
+        })
+
+        if (!response.ok) {
+          throw new Error('Failed to top-up')
+        }
+
+        const data = await response.json()
+        console.log('Top-up successful:', data)
+        // Handle success (e.g., show a success message or redirect)
+      } catch (error) {
+        console.error('Error during top-up:', error)
+        // Handle error (e.g., show an error message)
+      }
     }
 
-    return { cardNumber, cvc, expirationDate, amount, address, handleSubmit }
+    return { cardholderName, cardNumber, cvc, expirationDate, amount, address, handleSubmit }
   }
 })
 </script>
