@@ -15,6 +15,7 @@ export interface CartItem {
     name: string
     price: number
     quantity: number
+    image: string
 }
 
 export const useProductStore = defineStore('product', {
@@ -88,7 +89,13 @@ export const useProductStore = defineStore('product', {
             if (item) {
                 item.quantity += quantity
             } else {
-                this.cart.push({ id: product.id, name: product.name, price: product.price, quantity })
+                this.cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    quantity,
+                    image: product.image
+                })
             }
             this.saveCart()
         },

@@ -12,10 +12,16 @@
             :key="item.id"
             class="border flex flex-col gap-4 p-4 rounded-lg bg-white"
           >
+            <div class="relative aspect-square">
+              <img
+                :src="item.image"
+                alt="Product Image"
+                class="w-full h-full object-cover rounded-lg"
+              />
+            </div>
             <h2 class="text-xl font-bold">{{ item.name }}</h2>
-            <div>
-              <p>$ {{ item.price }}</p>
-              <p>Quantity: {{ item.quantity }}</p>
+            <div class="text-2xl font-semibold">
+              <p>${{ item.price }} * {{ item.quantity }}</p>
             </div>
             <button
               @click="removeFromCart(item.id)"
@@ -116,4 +122,13 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.aspect-square img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>
