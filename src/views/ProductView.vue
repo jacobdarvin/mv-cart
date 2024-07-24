@@ -6,17 +6,21 @@
         <div
           v-for="product in products"
           :key="product.id"
-          class="border flex flex-col gap-4 p-4 rounded-lg hover:cursor-pointer transition hover:scale-105 hover:shadow-lg bg-white"
+          class="border flex flex-col p-4 rounded-lg hover:cursor-pointer transition hover:scale-105 hover:shadow-lg bg-white"
           @click="viewProduct(product.id)"
         >
-          <h2 class="text-xl font-bold">{{ product.name }}</h2>
-          <div>
-            <p>{{ product.description }}</p>
-            <p>$ {{ product.price }}</p>
+          <div class="relative aspect-square">
+            <img
+              src="https://dynamic.zacdn.com/7f7QkMVe0h0Qn57T1Gz4KmiJKk0=/filters:quality(70):format(webp)/https://static-ph.zacdn.com/p/nike-0565-7017322-2.jpg"
+              alt="Product Image"
+              class="w-full h-full object-cover rounded-lg"
+            />
           </div>
+          <h2 class="text-xl font-bold">{{ product.name }}</h2>
+          <p>${{ product.price }} • {{ product.quantity }} left in stock</p>
           <button
             @click.stop="viewProduct(product.id)"
-            class="bg-black hover:invert transition border border-white text-white rounded-lg p-2"
+            class="bg-black hover:invert transition border border-white text-white rounded-lg p-2 mt-2"
           >
             View Product
           </button>
@@ -56,4 +60,13 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.aspect-square img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>

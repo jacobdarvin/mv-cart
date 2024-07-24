@@ -1,7 +1,7 @@
 <template>
   <div class="flex min-h-screen items-center justify-center bg-gray-100">
-    <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
-      <h2 class="text-2xl font-bold text-center text-gray-800">Register</h2>
+    <div class="w-full max-w-md p-8 space-y-2 bg-white rounded-lg shadow-md">
+      <p class="text-4xl font-bold">🔥 Register</p>
       <form @submit.prevent="register" class="space-y-6">
         <div>
           <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
