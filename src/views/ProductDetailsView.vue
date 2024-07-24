@@ -46,27 +46,13 @@ export default defineComponent({
     const productStore = useProductStore()
     const product = ref<any>(null)
 
-    const fetchProduct = async (productId: string) => {
-      try {
-        const response = await fetch(`http://localhost:4000/api/products/${productId}`)
-        if (!response.ok) {
-          throw new Error('Network response was not ok')
-        }
-        const result = await response.json()
-        return result.data
-      } catch (error) {
-        console.error('Error fetching product:', error)
-        return null
-      }
-    }
-
     onMounted(async () => {
       const productId = route.params.id as string
       const storeProduct = productStore.products.find((product) => product.id === productId)
       if (storeProduct) {
         product.value = storeProduct
       } else {
-        product.value = await fetchProduct(productId)
+        product.value = await productStore.fetchProduct(productId)
       }
     })
 

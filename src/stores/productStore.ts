@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { useAuthStore } from '@/stores/authStore'
 
 export interface Product {
     id: string
@@ -22,17 +23,63 @@ export const useProductStore = defineStore('product', {
     }),
     actions: {
         async fetchProducts() {
-            const response = await fetch('http://localhost:4000/api/products')
-            const data = await response.json()
-            this.products = data.data.map((product: any) => ({
-                id: product.id,
-                name: product.name,
-                description: product.description,
-                price: parseFloat(product.price),
-                quantity: product.quantity
-            }))
+            const authStore = useAuthStore()
 
-            console.log(this.products)
+            try {
+                const response = await fetch('http://localhost:4000/api/products', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authStore.token}`
+                    }
+                })
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.statusText}`)
+                }
+
+                const data = await response.json()
+                this.products = data.data.map((product: any) => ({
+                    id: product.id,
+                    name: product.name,
+                    description: product.description,
+                    price: parseFloat(product.price),
+                    quantity: product.quantity
+                }))
+
+                console.log(this.products)
+            } catch (error) {
+                console.error('Error fetching products:', error)
+            }
+        },
+        async fetchProduct(productId: string) {
+            const authStore = useAuthStore()
+
+            try {
+                const response = await fetch(`http://localhost:4000/api/products/${productId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authStore.token}`
+                    }
+                })
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.statusText}`)
+                }
+
+                const result = await response.json()
+                return {
+                    id: result.data.id,
+                    name: result.data.name,
+                    description: result.data.description,
+                    price: parseFloat(result.data.price),
+                    quantity: result.data.quantity
+                }
+            } catch (error) {
+                console.error('Error fetching product:', error)
+                return null
+            }
         },
         addToCart(product: Product) {
             const item = this.cart.find(item => item.id === product.id)
@@ -49,7 +96,7 @@ export const useProductStore = defineStore('product', {
         },
         clearCart() {
             this.cart = []
-            this.saveCart() // I can save this in session storage
+            this.saveCart()
         },
         saveCart() {
             console.log('saving cart!')
