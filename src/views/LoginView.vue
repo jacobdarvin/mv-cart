@@ -1,4 +1,3 @@
-<!-- src/views/LoginView.vue -->
 <template>
   <div class="flex min-h-screen items-center justify-center bg-gray-100">
     <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
@@ -74,8 +73,7 @@ export default {
 
         if (response.status === 200) {
           const data = await response.json()
-          authStore.login(data.session)
-          alert('Logged in!')
+          authStore.login(data.token) // Store the token in the auth store
           router.push('/')
         } else if (response.status === 401) {
           alert('Invalid credentials')

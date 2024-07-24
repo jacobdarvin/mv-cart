@@ -11,9 +11,12 @@
         </div>
       </div>
       <div class="flex w-full gap-4">
-        <button class="bg-white hover:invert w-full transition border border-black rounded-lg p-2">
-          <router-link to="/"> Back to Products </router-link>
-        </button>
+        <router-link
+          to="/"
+          class="bg-white hover:invert w-full transition border border-black rounded-lg p-2 text-center"
+        >
+          Back to Products
+        </router-link>
         <button
           @click="addToCart(product)"
           class="bg-black hover:invert w-full transition border border-white text-white rounded-lg p-2"

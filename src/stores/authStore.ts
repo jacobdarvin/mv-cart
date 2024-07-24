@@ -1,26 +1,36 @@
 // src/stores/authStore.js
 import { defineStore } from 'pinia'
 
+interface AuthState {
+    isAuthenticated: boolean
+    token: string | null
+}
+
 export const useAuthStore = defineStore('auth', {
-    state: () => ({
-        isAuthenticated: false
+    state: (): AuthState => ({
+        isAuthenticated: false,
+        token: null
     }),
     actions: {
         checkAuth() {
-            const session = localStorage.getItem('session')
-            if (session) {
+            const token = localStorage.getItem('token')
+            if (token) {
                 this.isAuthenticated = true
+                this.token = token
             } else {
                 this.isAuthenticated = false
+                this.token = null
             }
         },
-        login(sessionData) {
-            localStorage.setItem('session', JSON.stringify(sessionData))
+        login(token: string) {
+            localStorage.setItem('token', token)
             this.isAuthenticated = true
+            this.token = token
         },
         logout() {
-            localStorage.removeItem('session')
+            localStorage.removeItem('token')
             this.isAuthenticated = false
+            this.token = null
         }
     }
 })

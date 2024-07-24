@@ -10,7 +10,7 @@
       </router-link>
       <button
         @click="logout"
-        class="ml-4 px-4 py-2 text-sm font-medium text-white bg-black border border-transparent rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+        class="bg-white border border-black hover:invert transition rounded-lg p-2 px-4 ml-4"
       >
         Logout
       </button>
