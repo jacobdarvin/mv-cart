@@ -12,9 +12,9 @@
     </div>
     <div class="flex flex-col">
       <div class="flex gap-4 items-center">
-        <router-link to="/cart" class="text-2xl underline hover:text-gray-400">
+        <router-link to="/cart" class="text-2xl hover:text-gray-400">
           <span class="font-bold">{{ totalItems }}</span
-          >&nbsp;Cart
+          >&nbsp;🛒
         </router-link>
         <span class="font-bold text-2xl">${{ balance }}</span>
       </div>
