@@ -12,11 +12,10 @@
     </div>
     <div class="flex flex-col">
       <div class="flex gap-4 items-center">
-        <router-link to="/cart" class="text-2xl hover:text-gray-400">
-          <span class="font-bold">{{ totalItems }}</span
-          >&nbsp;🛒
+        <router-link to="/cart" class="text-2xl font-semibold hover:text-gray-400">
+          {{ totalItems }} Cart
         </router-link>
-        <span class="font-bold text-2xl">${{ balance }}</span>
+        <router-link to="/topup" class="text-2xl hover:text-gray-400">${{ balance }}</router-link>
       </div>
     </div>
   </nav>
