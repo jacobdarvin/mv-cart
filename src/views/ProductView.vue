@@ -6,20 +6,29 @@
         <div
           v-for="product in products"
           :key="product.id"
-          class="border flex flex-col p-4 rounded-lg hover:cursor-pointer transition hover:shadow-lg bg-white"
-          @click="viewProduct(product.id)"
+          class="relative border flex flex-col p-4 rounded-lg transition hover:shadow-lg bg-white"
         >
-          <div class="relative aspect-square">
+          <div class="relative aspect-square overflow-hidden">
             <img
               :src="product.image"
               alt="Product Image"
               class="w-full h-full object-cover rounded-lg"
             />
+            <div
+              v-if="product.quantity === 0"
+              class="absolute inset-0 flex items-center rounded-lg justify-center"
+            >
+              <span class="absolute text-2xl font-bold p-8 marquee"
+                >OUT OF STOCK • OUT OF STOCK • OUT OF STOCK • OUT OF STOCK • OUT OF STOCK • OUT OF
+                STOCK •</span
+              >
+            </div>
           </div>
           <h2 class="text-xl font-bold">{{ product.name }}</h2>
           <p>${{ product.price }} • {{ product.quantity }} left in stock</p>
           <button
             @click.stop="viewProduct(product.id)"
+            :disabled="product.quantity === 0"
             class="bg-black hover:invert transition border border-white text-white rounded-lg p-2 mt-2"
           >
             View Product
@@ -70,5 +79,28 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.marquee {
+  white-space: nowrap;
+  overflow: hidden;
+  animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.cursor-not-allowed {
+  pointer-events: none;
 }
 </style>

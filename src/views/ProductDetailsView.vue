@@ -129,15 +129,6 @@ export default defineComponent({
   animation: marquee 15s linear infinite;
 }
 
-.aspect-square img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 @keyframes marquee {
   0% {
     transform: translateX(100%);
@@ -145,5 +136,14 @@ export default defineComponent({
   100% {
     transform: translateX(-100%);
   }
+}
+
+.aspect-square img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 </style>
