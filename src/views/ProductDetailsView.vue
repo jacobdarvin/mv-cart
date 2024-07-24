@@ -23,8 +23,8 @@
               v-if="cartQuantity > 0"
               class="absolute bottom-0 right-0 text-6xl font-bold p-8 marquee"
             >
-              COP'D {{ cartQuantity }} • COP'D {{ cartQuantity }} • COP'D {{ cartQuantity }} • COP'D
-              {{ cartQuantity }} • COP'D {{ cartQuantity }} • COP'D {{ cartQuantity }} •
+              COP'D {{ cartQuantity }} * COP'D {{ cartQuantity }} * COP'D {{ cartQuantity }} * COP'D
+              {{ cartQuantity }} * COP'D {{ cartQuantity }} * COP'D {{ cartQuantity }} *
             </div>
             <p>{{ product.description }}</p>
           </div>
