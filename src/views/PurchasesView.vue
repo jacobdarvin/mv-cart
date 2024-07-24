@@ -3,15 +3,30 @@
     <div class="container mx-auto p-8">
       <NavBar />
       <div class="mt-4">
-        <h1 class="text-2xl font-bold mb-4">Purchases</h1>
+        <div class="border rounded-lg bg-white flex p-4 mb-4">
+          <h1 class="text-2xl font-bold">👟 Purchases</h1>
+        </div>
         <div class="grid gap-4 grid-cols-1">
           <div
             v-for="purchase in purchases"
             :key="purchase.id"
-            class="border p-4 rounded-lg bg-white shadow hover:shadow-lg transition"
+            class="border p-4 rounded-lg bg-white flex"
           >
-            <h2 class="text-xl font-bold">{{ purchase.id }}</h2>
-            <p>Quantity: {{ purchase.quantity }}</p>
+            <img
+              :src="purchase.product?.image"
+              alt="Product Image"
+              class="w-24 h-24 object-cover mr-4"
+            />
+
+            <div class="flex flex-col justify-between">
+              <div>
+                <h2 class="text-xl font-bold">{{ purchase.product?.name }}</h2>
+                <p class="text-gray-600">
+                  {{ purchase.quantity }} x ${{ purchase.product?.price.toFixed(2) }}
+                </p>
+              </div>
+              <p class="text-gray-500 text-sm">Purchase ID: {{ purchase.id }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -22,7 +37,6 @@
 <script lang="ts">
 import { defineComponent, computed, onMounted } from 'vue'
 import { usePurchaseStore } from '@/stores/purchaseStore'
-
 import NavBar from '@/components/NavBar.vue'
 
 export default defineComponent({
@@ -35,8 +49,6 @@ export default defineComponent({
     })
 
     const purchases = computed(() => purchaseStore.purchases)
-
-    console.log(purchases)
 
     return {
       purchases

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { useAuthStore } from '@/stores/authStore'
 
-interface Product {
+export interface Product {
     id: string
     name: string
     description: string
@@ -10,7 +10,7 @@ interface Product {
     image: string
 }
 
-interface CartItem {
+export interface CartItem {
     id: string
     name: string
     price: number
@@ -77,7 +77,8 @@ export const useProductStore = defineStore('product', {
                     name: result.data.name,
                     description: result.data.description,
                     price: parseFloat(result.data.price),
-                    quantity: result.data.quantity
+                    quantity: result.data.quantity,
+                    image: result.data.image
                 }
             } catch (error) {
                 console.error('Error fetching product:', error)
