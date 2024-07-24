@@ -34,12 +34,6 @@ export default defineComponent({
       router.push('/login')
     }
 
-    onMounted(() => {
-      if (authStore.isAuthenticated) {
-        authStore.fetchBalance()
-      }
-    })
-
     return {
       totalItems,
       balance,
