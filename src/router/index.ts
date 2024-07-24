@@ -35,6 +35,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
+  authStore.checkAuth()
   const isAuthenticated = authStore.isAuthenticated
 
   if (to.matched.some(record => record.meta.requiresAuth)) {

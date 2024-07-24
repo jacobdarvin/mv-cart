@@ -90,8 +90,7 @@ export default {
             user: { email: email.value, password: password.value }
           })
         })
-        const data = await response.json()
-        if (data.success) {
+        if (response.status === 201) {
           router.push('/login')
         } else {
           alert('Registration failed')

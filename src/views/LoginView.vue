@@ -51,12 +51,14 @@
 <script>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/authStore'
 
 export default {
   setup() {
     const email = ref('')
     const password = ref('')
     const router = useRouter()
+    const authStore = useAuthStore()
 
     const login = async () => {
       try {
@@ -65,20 +67,24 @@ export default {
           headers: {
             'Content-Type': 'application/json'
           },
-
           body: JSON.stringify({
             user: { email: email.value, password: password.value }
           })
         })
-        const data = await response.json()
-        if (data.success) {
-          localStorage.setItem('session', JSON.stringify(data.session))
+
+        if (response.status === 200) {
+          const data = await response.json()
+          authStore.login(data.session)
+          alert('Logged in!')
           router.push('/')
-        } else {
+        } else if (response.status === 401) {
           alert('Invalid credentials')
+        } else {
+          alert('An error occurred. Please try again.')
         }
       } catch (error) {
         console.error('Error during login:', error)
+        alert('An error occurred. Please try again.')
       }
     }
 

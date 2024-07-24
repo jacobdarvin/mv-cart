@@ -1,3 +1,4 @@
+// src/stores/authStore.js
 import { defineStore } from 'pinia'
 
 export const useAuthStore = defineStore('auth', {
@@ -5,10 +6,20 @@ export const useAuthStore = defineStore('auth', {
         isAuthenticated: false
     }),
     actions: {
-        login() {
+        checkAuth() {
+            const session = localStorage.getItem('session')
+            if (session) {
+                this.isAuthenticated = true
+            } else {
+                this.isAuthenticated = false
+            }
+        },
+        login(sessionData) {
+            localStorage.setItem('session', JSON.stringify(sessionData))
             this.isAuthenticated = true
         },
         logout() {
+            localStorage.removeItem('session')
             this.isAuthenticated = false
         }
     }
