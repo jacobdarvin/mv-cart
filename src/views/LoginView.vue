@@ -73,7 +73,7 @@ export default {
 
         if (response.status === 200) {
           const data = await response.json()
-          authStore.login(data.token) // Store the token in the auth store
+          authStore.login(data.token)
           router.push('/')
         } else if (response.status === 401) {
           alert('Invalid credentials')

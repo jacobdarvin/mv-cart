@@ -7,7 +7,7 @@ export interface Purchase {
     quantity: number
     product_id: string
     user_id: string
-    product?: Product  // Add optional product details
+    product?: Product
 }
 
 export const usePurchaseStore = defineStore('purchase', {

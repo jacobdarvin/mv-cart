@@ -19,7 +19,7 @@ export const useAuthStore = defineStore('auth', {
             if (token) {
                 this.isAuthenticated = true
                 this.token = token
-                this.fetchBalance() // Fetch balance when checking auth status
+                this.fetchBalance()
             } else {
                 this.isAuthenticated = false
                 this.token = null
