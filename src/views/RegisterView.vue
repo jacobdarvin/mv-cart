@@ -1,4 +1,3 @@
-<!-- src/views/RegisterView.vue -->
 <template>
   <div class="flex min-h-screen items-center justify-center bg-gray-100">
     <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
@@ -94,24 +93,9 @@ export default {
         })
 
         if (response.status === 201) {
-          const loginResponse = await fetch('http://localhost:4000/api/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              user: { email: email.value, password: password.value }
-            })
-          })
-
-          if (loginResponse.status === 200) {
-            const loginData = await loginResponse.json()
-            authStore.login(loginData.session)
-            router.push('/')
-          } else {
-            alert('Registration succeeded, but login failed. Please try to log in manually.')
-            router.push('/login')
-          }
+          const data = await response.json()
+          authStore.login(data.token)
+          router.push('/')
         } else {
           alert('Registration failed')
         }
