@@ -29,7 +29,11 @@
             <p>{{ product.description }}</p>
           </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+        <div
+          :class="
+            cartQuantity === 0 ? 'grid grid-cols-1 gap-2' : 'grid grid-cols-1 md:grid-cols-2 gap-2'
+          "
+        >
           <button
             @click="addToCart(product)"
             :disabled="isAddToCartDisabled"
