@@ -21,7 +21,7 @@
             </div>
             <h2 class="text-xl font-bold">{{ item.name }}</h2>
             <div class="text-2xl font-semibold">
-              <p>${{ item.price }} * {{ item.quantity }}</p>
+              <p>${{ item.price }} x {{ item.quantity }}</p>
             </div>
             <button
               @click="removeFromCart(item.id)"
