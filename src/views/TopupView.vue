@@ -142,12 +142,9 @@ export default defineComponent({
           throw new Error('Failed to top-up')
         }
 
-        const data = await response.json()
-        console.log('Top-up successful:', data)
-        // Handle success (e.g., show a success message or redirect)
+        alert('Top-up successful!')
       } catch (error) {
-        console.error('Error during top-up:', error)
-        // Handle error (e.g., show an error message)
+        alert('Top-up error!')
       }
     }
 
