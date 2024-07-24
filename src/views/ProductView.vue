@@ -11,7 +11,7 @@
         >
           <div class="relative aspect-square">
             <img
-              src="https://dynamic.zacdn.com/7f7QkMVe0h0Qn57T1Gz4KmiJKk0=/filters:quality(70):format(webp)/https://static-ph.zacdn.com/p/nike-0565-7017322-2.jpg"
+              :src="product.image"
               alt="Product Image"
               class="w-full h-full object-cover rounded-lg"
             />

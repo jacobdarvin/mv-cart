@@ -7,7 +7,7 @@
           <div class="bg-white border p-4 rounded-lg relative">
             <div class="relative aspect-square">
               <img
-                src="https://dynamic.zacdn.com/7f7QkMVe0h0Qn57T1Gz4KmiJKk0=/filters:quality(70):format(webp)/https://static-ph.zacdn.com/p/nike-0565-7017322-2.jpg"
+                :src="product.image"
                 alt="Product Image"
                 class="w-full h-full object-cover rounded-lg"
               />
@@ -17,7 +17,7 @@
           </div>
 
           <div
-            class="bg-white border p-4 rounded-lg lg:col-span-2 relative overflow-hidden min-h-24"
+            class="bg-white border p-4 rounded-lg lg:col-span-2 relative overflow-hidden min-h-24 pb-28"
           >
             <div
               v-if="cartQuantity > 0"
