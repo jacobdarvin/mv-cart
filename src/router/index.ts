@@ -1,13 +1,14 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
-import ProductList from '@/components/ProductList.vue'
-import CartList from '@/components/CartList.vue'
-import ProductDetail from '@/components/ProductDetail.vue'
+import { useAuthStore } from '@/stores/authStore'
 
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 
-import { useAuthStore } from '@/stores/authStore'
+import ProductView from '@/views/ProductView.vue'
+import ProductDetail from '@/components/ProductDetail.vue'
+
+import CartView from '@/views/CartView.vue'
 
 const routes = [
   {
@@ -17,13 +18,13 @@ const routes = [
     path: '/register', name: 'Register', component: RegisterView
   },
   {
-    path: '/', component: ProductList, meta: { requiresAuth: true }
+    path: '/', name: 'Products', component: ProductView, meta: { requiresAuth: false }
   },
   {
-    path: '/cart', component: CartList, meta: { requiresAuth: true }
+    path: '/cart', name: 'Cart', component: CartView, meta: { requiresAuth: false }
   },
   {
-    path: '/product/:id', component: ProductDetail, props: true, meta: { requiresAuth: true }
+    path: '/product/:id', name: 'Detail', component: ProductDetail, props: true, meta: { requiresAuth: false }
   }
 ]
 

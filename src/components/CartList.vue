@@ -4,12 +4,12 @@
       <div class="flex items-center gap-4">
         <h2 class="text-4xl font-bold">Cart</h2>
       </div>
-      <button
-        @click="goBack"
+      <router-link
+        to="/"
         class="bg-white border-black border hover:invert transition rounded-lg p-2 px-4 flex items-center"
       >
         Back to Products
-      </button>
+      </router-link>
     </nav>
     <div class="mt-4">
       <div v-if="cart.length > 0" class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-4">
@@ -52,9 +52,9 @@ import { useRouter } from 'vue-router'
 
 export default defineComponent({
   setup() {
-    const router = useRouter()
     const productStore = useProductStore()
     const cart = computed(() => productStore.cart)
+    const router = useRouter()
 
     const confirmPurchase = async () => {
       try {
@@ -81,6 +81,7 @@ export default defineComponent({
         }
         productStore.clearCart()
         alert('Purchase confirmed!')
+        router.push('/') // Update this to use success page
       } catch (error) {
         console.error('Error confirming purchase:', error)
         alert('There was an error processing your purchase. Please try again.')
@@ -95,16 +96,11 @@ export default defineComponent({
       productStore.removeFromCart(productId)
     }
 
-    const goBack = () => {
-      router.push('/')
-    }
-
     return {
       cart,
       total,
       removeFromCart,
-      confirmPurchase,
-      goBack
+      confirmPurchase
     }
   }
 })

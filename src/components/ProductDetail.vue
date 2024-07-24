@@ -11,11 +11,8 @@
         </div>
       </div>
       <div class="flex w-full gap-4">
-        <button
-          @click="goBack"
-          class="bg-white hover:invert w-full transition border border-black rounded-lg p-2"
-        >
-          Back
+        <button class="bg-white hover:invert w-full transition border border-black rounded-lg p-2">
+          <router-link to="/"> Back to Products </router-link>
         </button>
         <button
           @click="addToCart(product)"
@@ -33,7 +30,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { useProductStore } from '@/stores/productStore'
 import NavBar from '@/components/NavBar.vue'
 
@@ -41,7 +38,6 @@ export default defineComponent({
   components: { NavBar },
   setup() {
     const route = useRoute()
-    const router = useRouter()
     const productStore = useProductStore()
     const product = ref<any>(null)
 
@@ -73,14 +69,9 @@ export default defineComponent({
       productStore.addToCart(product)
     }
 
-    const goBack = () => {
-      router.push('/')
-    }
-
     return {
       product,
-      addToCart,
-      goBack
+      addToCart
     }
   }
 })

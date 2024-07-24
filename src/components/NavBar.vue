@@ -4,36 +4,26 @@
       <h2 class="text-4xl font-bold">Product Page</h2>
     </div>
     <div class="flex gap-2">
-      <button
-        @click="viewCart"
-        class="bg-white border-black border hover:invert transition rounded-lg p-2 px-4 flex items-center"
-      >
+      <router-link to="/cart" class="underline">
         <span class="font-bold">{{ totalItems }}</span
         >&nbsp;Cart
-      </button>
+      </router-link>
     </div>
   </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { useRouter } from 'vue-router'
 import { useProductStore } from '@/stores/productStore'
 
 export default defineComponent({
   setup() {
     const productStore = useProductStore()
-    const router = useRouter()
 
     const totalItems = computed(() => productStore.totalItemsInCart)
 
-    const viewCart = () => {
-      router.push('/cart')
-    }
-
     return {
-      totalItems,
-      viewCart
+      totalItems
     }
   }
 })
