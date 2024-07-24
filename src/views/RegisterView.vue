@@ -66,6 +66,7 @@
 <script>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/authStore'
 
 export default {
   setup() {
@@ -73,6 +74,7 @@ export default {
     const password = ref('')
     const confirmPassword = ref('')
     const router = useRouter()
+    const authStore = useAuthStore()
 
     const register = async () => {
       if (password.value !== confirmPassword.value) {
@@ -90,13 +92,32 @@ export default {
             user: { email: email.value, password: password.value }
           })
         })
+
         if (response.status === 201) {
-          router.push('/login')
+          const loginResponse = await fetch('http://localhost:4000/api/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              user: { email: email.value, password: password.value }
+            })
+          })
+
+          if (loginResponse.status === 200) {
+            const loginData = await loginResponse.json()
+            authStore.login(loginData.session)
+            router.push('/')
+          } else {
+            alert('Registration succeeded, but login failed. Please try to log in manually.')
+            router.push('/login')
+          }
         } else {
           alert('Registration failed')
         }
       } catch (error) {
         console.error('Error during registration:', error)
+        alert('An error occurred. Please try again.')
       }
     }
 
