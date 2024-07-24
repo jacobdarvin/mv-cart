@@ -4,7 +4,7 @@
       <NavBar />
       <div class="mt-4">
         <div class="border rounded-lg bg-white flex p-4 mb-4">
-          <h1 class="text-2xl font-bold">👟 Purchases</h1>
+          <h1 class="text-2xl font-bold">Purchases</h1>
         </div>
         <div class="grid gap-4 grid-cols-1">
           <div
