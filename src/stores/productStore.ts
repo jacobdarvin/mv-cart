@@ -81,18 +81,25 @@ export const useProductStore = defineStore('product', {
                 return null
             }
         },
-        addToCart(product: Product) {
+        addToCart(product: Product, quantity: number) {
             const item = this.cart.find(item => item.id === product.id)
             if (item) {
-                item.quantity++
+                item.quantity += quantity
             } else {
-                this.cart.push({ id: product.id, name: product.name, price: product.price, quantity: 1 })
+                this.cart.push({ id: product.id, name: product.name, price: product.price, quantity })
             }
             this.saveCart()
         },
         removeFromCart(productId: string) {
-            this.cart = this.cart.filter(item => item.id !== productId)
-            this.saveCart()
+            const item = this.cart.find(item => item.id === productId)
+            if (item) {
+                if (item.quantity > 1) {
+                    item.quantity -= 1
+                } else {
+                    this.cart = this.cart.filter(item => item.id !== productId)
+                }
+                this.saveCart()
+            }
         },
         clearCart() {
             this.cart = []

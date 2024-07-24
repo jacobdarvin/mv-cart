@@ -3,27 +3,61 @@
     <div class="container mx-auto p-8">
       <NavBar />
       <div class="flex flex-col w-full mt-4 gap-4" v-if="product">
-        <div class="bg-white border p-4 rounded-lg flex-1">
-          <h2 class="text-4xl font-bold">{{ product.name }}</h2>
-          <div>
+        <div class="flex gap-4 relative">
+          <div class="bg-white border p-4 rounded-lg w-1/3 relative">
+            <div class="relative">
+              <img
+                src="https://via.placeholder.com/300"
+                alt="Product Image"
+                class="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+            <h2 class="text-4xl font-bold mt-2">{{ product.name }}</h2>
+            <p class="mt-2">${{ product.price }} • {{ product.quantity }} left in stock</p>
+          </div>
+
+          <div class="bg-white border p-4 rounded-lg w-2/3 relative overflow-hidden">
+            <div
+              v-if="cartQuantity > 0"
+              class="absolute bottom-0 right-0 text-6xl font-bold p-8 marquee"
+            >
+              COP'D {{ cartQuantity }} • COP'D {{ cartQuantity }} • COP'D {{ cartQuantity }} • COP'D
+              {{ cartQuantity }} • COP'D {{ cartQuantity }} • COP'D {{ cartQuantity }} •
+            </div>
             <p>{{ product.description }}</p>
-            <p>$ {{ product.price }}</p>
-            <p v-if="product.quantity">Quantity: {{ product.quantity }}</p>
           </div>
         </div>
-        <div class="flex w-full gap-4">
+        <div class="flex w-full gap-2">
+          <div class="w-full">
+            <router-link to="/">
+              <button class="bg-white w-full transition border border-black rounded-lg p-2">
+                Back to Products
+              </button>
+            </router-link>
+          </div>
+          <div class="w-full flex gap-2">
+            <button
+              @click="removeFromCart(product.id)"
+              class="bg-black hover:invert w-full transition border border-white text-white rounded-lg p-2"
+            >
+              Remove from Cart
+            </button>
+            <button
+              @click="addToCart(product)"
+              :disabled="isAddToCartDisabled"
+              class="bg-black hover:invert w-full transition border border-white text-white rounded-lg p-2 disabled:opacity-25 disabled:invert"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+        <div v-if="cartQuantity > 0" class="flex w-full">
           <router-link
-            to="/"
-            class="bg-white hover:invert w-full transition border border-black rounded-lg p-2 text-center"
+            to="/checkout"
+            class="bg-black hover:invert w-full transition border border-white text-white rounded-lg p-2 text-center"
           >
-            Back to Products
+            Proceed to Checkout
           </router-link>
-          <button
-            @click="addToCart(product)"
-            class="bg-black hover:invert w-full transition border border-white text-white rounded-lg p-2"
-          >
-            Add to Cart
-          </button>
         </div>
       </div>
       <div v-else>
@@ -34,7 +68,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue'
+import { defineComponent, ref, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProductStore } from '@/stores/productStore'
 import NavBar from '@/components/NavBar.vue'
@@ -57,15 +91,52 @@ export default defineComponent({
     })
 
     const addToCart = (product: any) => {
-      productStore.addToCart(product)
+      productStore.addToCart(product, 1)
     }
+
+    const removeFromCart = (productId: string) => {
+      productStore.removeFromCart(productId)
+    }
+
+    const cartQuantity = computed(() => {
+      const cartItem = productStore.cart.find((item) => item.id === product.value.id)
+      return cartItem ? cartItem.quantity : 0
+    })
+
+    const isAddToCartDisabled = computed(() => {
+      const cartItem = productStore.cart.find((item) => item.id === product.value.id)
+      const cartQuantity = cartItem ? cartItem.quantity : 0
+      return cartQuantity >= product.value.quantity
+    })
 
     return {
       product,
-      addToCart
+      addToCart,
+      removeFromCart,
+      cartQuantity,
+      isAddToCartDisabled
     }
   }
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.hover\:invert:hover {
+  filter: invert(100%);
+}
+
+.marquee {
+  white-space: nowrap;
+  overflow: hidden;
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+</style>
