@@ -25,9 +25,7 @@ export default defineComponent({
     const productStore = useProductStore()
     const authStore = useAuthStore()
     const router = useRouter()
-
     const totalItems = computed(() => productStore.totalItemsInCart)
-    const balance = computed(() => authStore.balance)
 
     const logout = () => {
       authStore.logout()
@@ -36,7 +34,6 @@ export default defineComponent({
 
     return {
       totalItems,
-      balance,
       logout
     }
   }

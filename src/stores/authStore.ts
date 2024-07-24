@@ -20,7 +20,6 @@ export const useAuthStore = defineStore('auth', {
             if (token) {
                 this.isAuthenticated = true
                 this.token = token
-                await this.fetchBalance()
             } else {
                 this.isAuthenticated = false
                 this.token = null
@@ -51,7 +50,6 @@ export const useAuthStore = defineStore('auth', {
             localStorage.setItem('token', token)
             this.isAuthenticated = true
             this.token = token
-            this.fetchBalance() // Fetch balance on login
         },
         logout() {
             const productStore = useProductStore()
