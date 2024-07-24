@@ -1,5 +1,6 @@
 // src/stores/authStore.ts
 import { defineStore } from 'pinia'
+import { useProductStore } from './productStore'
 
 interface AuthState {
     isAuthenticated: boolean
@@ -53,6 +54,8 @@ export const useAuthStore = defineStore('auth', {
             this.fetchBalance() // Fetch balance on login
         },
         logout() {
+            const productStore = useProductStore()
+            productStore.clearCart()
             localStorage.removeItem('token')
             this.isAuthenticated = false
             this.token = null
