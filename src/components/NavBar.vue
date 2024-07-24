@@ -15,7 +15,9 @@
         <router-link to="/cart" class="text-2xl font-semibold hover:text-gray-400">
           {{ totalItems }} Cart
         </router-link>
-        <router-link to="/topup" class="text-2xl hover:text-gray-400">${{ balance }}</router-link>
+        <router-link to="/topup" class="text-2xl hover:text-gray-400"
+          >${{ Number(balance).toLocaleString() }}</router-link
+        >
       </div>
     </div>
   </nav>
@@ -42,7 +44,7 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      if (authStore.isAuthenticated) {
+      if (authStore.isAuthenticated && authStore.balance === 0) {
         authStore.fetchBalance()
       }
     })

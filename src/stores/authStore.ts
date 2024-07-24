@@ -1,4 +1,4 @@
-// src/stores/authStore.js
+// src/stores/authStore.ts
 import { defineStore } from 'pinia'
 
 interface AuthState {
@@ -14,25 +14,26 @@ export const useAuthStore = defineStore('auth', {
         balance: 0,
     }),
     actions: {
-        checkAuth() {
+        async checkAuth() {
             const token = localStorage.getItem('token')
             if (token) {
                 this.isAuthenticated = true
                 this.token = token
-                this.fetchBalance()
+                await this.fetchBalance()
             } else {
                 this.isAuthenticated = false
                 this.token = null
             }
         },
         async fetchBalance() {
+            if (!this.token) return
             try {
-                const response = await fetch('http://localhost:4000/api/balance', {
+                const response = await fetch('http://localhost:4000/api/wallets/balance', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${this.token}`,
-                    },
+                        'Authorization': `Bearer ${this.token}`
+                    }
                 })
 
                 if (!response.ok) {
