@@ -8,6 +8,7 @@ import RegisterView from '@/views/RegisterView.vue'
 import ProductView from '@/views/ProductView.vue'
 
 import CartView from '@/views/CartView.vue'
+import PurchasesView from '@/views/PurchasesView.vue'
 import ProductDetailsView from '@/views/ProductDetailsView.vue'
 
 const routes = [
@@ -25,6 +26,9 @@ const routes = [
   },
   {
     path: '/cart', name: 'Cart', component: CartView, meta: { requiresAuth: true }
+  },
+  {
+    path: '/purchases', name: 'Purchases', component: PurchasesView, meta: { requiresAuth: true }
   },
 ]
 

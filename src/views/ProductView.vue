@@ -6,7 +6,7 @@
         <div
           v-for="product in products"
           :key="product.id"
-          class="border flex flex-col p-4 rounded-lg hover:cursor-pointer transition hover:scale-105 hover:shadow-lg bg-white"
+          class="border flex flex-col p-4 rounded-lg hover:cursor-pointer transition hover:shadow-lg bg-white"
           @click="viewProduct(product.id)"
         >
           <div class="relative aspect-square">
@@ -26,6 +26,7 @@
           </button>
         </div>
       </div>
+      <BotBar />
     </div>
   </div>
 </template>
@@ -35,9 +36,10 @@ import { defineComponent, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useProductStore } from '@/stores/productStore'
 import NavBar from '@/components/NavBar.vue'
+import BotBar from '@/components/BotBar.vue'
 
 export default defineComponent({
-  components: { NavBar },
+  components: { NavBar, BotBar },
   setup() {
     const productStore = useProductStore()
     const router = useRouter()

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { useAuthStore } from '@/stores/authStore'
 
-export interface Product {
+interface Product {
     id: string
     name: string
     description: string
@@ -10,7 +10,7 @@ export interface Product {
     image: string
 }
 
-export interface CartItem {
+interface CartItem {
     id: string
     name: string
     price: number
