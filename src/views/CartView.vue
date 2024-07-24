@@ -57,21 +57,31 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useProductStore } from '@/stores/productStore'
+import { useAuthStore } from '@/stores/authStore'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
   setup() {
     const productStore = useProductStore()
+    const authStore = useAuthStore()
     const cart = computed(() => productStore.cart)
     const router = useRouter()
 
     const confirmPurchase = async () => {
+      // Extra frontend validation for checking if logged in.
+      if (!authStore.isAuthenticated) {
+        alert('You must be logged in to make a purchase.')
+        router.push('/login')
+        return
+      }
+
       try {
         for (const item of cart.value) {
           const response = await fetch('http://localhost:4000/api/purchases', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${authStore.token}`
             },
             body: JSON.stringify({
               purchase: {
