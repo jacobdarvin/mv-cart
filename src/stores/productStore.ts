@@ -22,6 +22,7 @@ export const useProductStore = defineStore('product', {
     state: () => ({
         products: [] as Product[],
         cart: JSON.parse(localStorage.getItem('cart') || '[]') as CartItem[],
+        purchasedItems: [] as CartItem[]
     }),
     actions: {
         async fetchProducts() {
@@ -118,6 +119,9 @@ export const useProductStore = defineStore('product', {
         saveCart() {
             console.log('saving cart!')
             localStorage.setItem('cart', JSON.stringify(this.cart))
+        },
+        addPurchasedItems(items: CartItem[]) {
+            this.purchasedItems = items
         }
     },
     getters: {

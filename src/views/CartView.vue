@@ -66,7 +66,6 @@ export default defineComponent({
     const router = useRouter()
 
     const confirmPurchase = async () => {
-      // Extra frontend validation for checking if logged in.
       if (!authStore.isAuthenticated) {
         alert('You must be logged in to make a purchase.')
         router.push('/login')
@@ -96,8 +95,9 @@ export default defineComponent({
           const data = await response.json()
           console.log('Purchase confirmed for:', data)
         }
+        productStore.addPurchasedItems(cart.value)
         productStore.clearCart()
-        router.push('/') // Update this to use success page
+        router.push('/success')
       } catch (error) {
         console.error('Error confirming purchase:', error)
         alert('There was an error processing your purchase. Please try again.')

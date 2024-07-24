@@ -10,6 +10,7 @@ import ProductView from '@/views/ProductView.vue'
 import CartView from '@/views/CartView.vue'
 import PurchasesView from '@/views/PurchasesView.vue'
 import ProductDetailsView from '@/views/ProductDetailsView.vue'
+import SuccessView from '@/views/SuccessView.vue'
 
 const routes = [
   {
@@ -26,6 +27,9 @@ const routes = [
   },
   {
     path: '/cart', name: 'Cart', component: CartView, meta: { requiresAuth: true }
+  },
+  {
+    path: '/success', name: 'Success', component: SuccessView, meta: { requiresAuth: true }
   },
   {
     path: '/purchases', name: 'Purchases', component: PurchasesView, meta: { requiresAuth: true }
