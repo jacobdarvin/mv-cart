@@ -3,8 +3,8 @@
     <div class="container mx-auto p-8">
       <NavBar />
       <div class="flex flex-col w-full mt-4 gap-4" v-if="product">
-        <div class="flex gap-4 relative">
-          <div class="bg-white border p-4 rounded-lg w-1/3 relative">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 relative">
+          <div class="bg-white border p-4 rounded-lg relative">
             <div class="relative">
               <img
                 src="https://via.placeholder.com/300"
@@ -16,7 +16,7 @@
             <p class="mt-2">${{ product.price }} • {{ product.quantity }} left in stock</p>
           </div>
 
-          <div class="bg-white border p-4 rounded-lg w-2/3 relative overflow-hidden">
+          <div class="bg-white border p-4 rounded-lg lg:col-span-2 relative overflow-hidden">
             <div
               v-if="cartQuantity > 0"
               class="absolute bottom-0 right-0 text-6xl font-bold p-8 marquee"
@@ -27,34 +27,25 @@
             <p>{{ product.description }}</p>
           </div>
         </div>
-        <div class="flex w-full gap-2">
-          <div class="w-full">
-            <router-link to="/">
-              <button class="bg-white w-full transition border border-black rounded-lg p-2">
-                Back to Products
-              </button>
-            </router-link>
-          </div>
-          <div class="w-full flex gap-2">
-            <button
-              @click="removeFromCart(product.id)"
-              class="bg-black hover:invert w-full transition border border-white text-white rounded-lg p-2"
-            >
-              Remove from Cart
-            </button>
-            <button
-              @click="addToCart(product)"
-              :disabled="isAddToCartDisabled"
-              class="bg-black hover:invert w-full transition border border-white text-white rounded-lg p-2 disabled:opacity-25 disabled:invert"
-            >
-              Add to Cart
-            </button>
-          </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <button
+            @click="removeFromCart(product.id)"
+            class="bg-black hover:invert col-span-1 md:col-span-1 transition border border-white text-white rounded-lg p-2"
+          >
+            Remove from Cart
+          </button>
+          <button
+            @click="addToCart(product)"
+            :disabled="isAddToCartDisabled"
+            class="bg-black hover:invert col-span-1 md:col-span-1 transition border border-white text-white rounded-lg p-2 disabled:opacity-25 disabled:invert"
+          >
+            Add to Cart
+          </button>
         </div>
         <div v-if="cartQuantity > 0" class="flex w-full">
           <router-link
-            to="/checkout"
-            class="bg-black hover:invert w-full transition border border-white text-white rounded-lg p-2 text-center"
+            to="/cart"
+            class="bg-white w-full transition border border-black rounded-lg p-2 text-center"
           >
             Proceed to Checkout
           </router-link>
