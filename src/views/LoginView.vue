@@ -1,5 +1,5 @@
 <template>
-  <div class="flex min-h-screen items-center justify-center bg-gray-50">
+  <div class="flex min-h-screen items-center justify-center bg-gray-100">
     <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
       <h2 class="text-2xl font-bold text-center text-gray-800">Login</h2>
       <form @submit.prevent="login" class="space-y-6">
@@ -32,7 +32,7 @@
         <div>
           <button
             type="submit"
-            class="w-full flex justify-center px-4 py-2 text-sm font-medium text-white bg-black border border-transparent rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+            class="w-full flex justify-center px-4 py-2 text-sm font-medium text-white bg-black border border-white rounded-md shadow-sm hover:invert transition"
           >
             Login
           </button>
