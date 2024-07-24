@@ -5,9 +5,9 @@
       <div class="flex flex-col w-full mt-4 gap-4" v-if="product">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 relative">
           <div class="bg-white border p-4 rounded-lg relative">
-            <div class="relative">
+            <div class="relative aspect-square">
               <img
-                src="https://via.placeholder.com/300"
+                src="https://dynamic.zacdn.com/7f7QkMVe0h0Qn57T1Gz4KmiJKk0=/filters:quality(70):format(webp)/https://static-ph.zacdn.com/p/nike-0565-7017322-2.jpg"
                 alt="Product Image"
                 class="w-full h-full object-cover rounded-lg"
               />
@@ -16,7 +16,9 @@
             <p class="mt-2">${{ product.price }} • {{ product.quantity }} left in stock</p>
           </div>
 
-          <div class="bg-white border p-4 rounded-lg lg:col-span-2 relative overflow-hidden">
+          <div
+            class="bg-white border p-4 rounded-lg lg:col-span-2 relative overflow-hidden min-h-24"
+          >
             <div
               v-if="cartQuantity > 0"
               class="absolute bottom-0 right-0 text-6xl font-bold p-8 marquee"

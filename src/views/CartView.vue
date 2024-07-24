@@ -1,17 +1,7 @@
 <template>
   <div class="bg-gray-50 min-h-screen">
     <div class="container mx-auto p-8">
-      <nav class="flex justify-between items-center border p-4 rounded-lg bg-white">
-        <div class="flex items-center gap-4">
-          <h2 class="text-4xl font-bold">Cart</h2>
-        </div>
-        <router-link
-          to="/"
-          class="bg-white border-black border hover:invert transition rounded-lg p-2 px-4 flex items-center"
-        >
-          Back to Products
-        </router-link>
-      </nav>
+      <NavBar />
       <div class="mt-4">
         <div
           v-if="cart.length > 0"
@@ -59,8 +49,10 @@ import { defineComponent, computed } from 'vue'
 import { useProductStore } from '@/stores/productStore'
 import { useAuthStore } from '@/stores/authStore'
 import { useRouter } from 'vue-router'
+import NavBar from '@/components/NavBar.vue'
 
 export default defineComponent({
+  components: { NavBar },
   setup() {
     const productStore = useProductStore()
     const authStore = useAuthStore()
