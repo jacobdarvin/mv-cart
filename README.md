@@ -1,4 +1,4 @@
-# mv-cart (COP'D Front-end) [Vue 3, Tailwind, Cypress & Pinia]
+# mv-cart
 
 Hi all! This is my entry to the coding assignment thing - Jacob
 
@@ -29,3 +29,4 @@ That's all. Enjoy!
 
 ![alt text](https://i.imgur.com/Ymj8Wvc.png)
 
+#### Project running on Vue 3, Tailwind, Cypress & Pinia
