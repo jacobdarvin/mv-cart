@@ -27,6 +27,7 @@ npx cypress open
 
 That's all. Enjoy!
 
-![alt text](https://i.imgur.com/Ymj8Wvc.png)
+![Product Page](https://i.imgur.com/Ymj8Wvc.png)
+![Main Page](https://i.imgur.com/yazQ1L1.png)
 
 #### Project running on Vue 3, Tailwind, Cypress & Pinia
