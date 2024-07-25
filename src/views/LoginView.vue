@@ -61,7 +61,7 @@ export default {
 
     const login = async () => {
       try {
-        const response = await fetch('http://localhost:4000/api/login', {
+        const response = await fetch('http://127.0.0.1:4000/api/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

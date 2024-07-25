@@ -21,7 +21,7 @@ export const usePurchaseStore = defineStore('purchase', {
             const productStore = useProductStore();
 
             try {
-                const response = await fetch(`http://localhost:4000/api/purchases`, {
+                const response = await fetch(`http://127.0.0.1:4000/api/purchases`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

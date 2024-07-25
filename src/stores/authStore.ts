@@ -28,7 +28,7 @@ export const useAuthStore = defineStore('auth', {
         async fetchBalance() {
             if (!this.token) return
             try {
-                const response = await fetch('http://localhost:4000/api/wallets/balance', {
+                const response = await fetch('http://127.0.0.1:4000/api/wallets/balance', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
