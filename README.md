@@ -37,5 +37,5 @@ To open cypress and run spec.cy.js for a super simple e2e test
 
 ![Main Page](https://i.imgur.com/yazQ1L1.png)
 
-### Project running on Vue 3, Tailwind, Cypress & Pinia
+### Project running 👟 on Vue 3, Tailwind, Cypress & Pinia
 That's all. Thanks!
