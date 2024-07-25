@@ -27,5 +27,5 @@ npx cypress open
 
 That's all. Enjoy!
 
-![alt text]([https://i.imgur.com/Ymj8Wvc.png])
+![alt text](https://i.imgur.com/Ymj8Wvc.png)
 
