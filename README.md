@@ -35,7 +35,14 @@ To open cypress and run spec.cy.js for a super simple e2e test
 - Fill in some ~~definitely not~~ real credit card information as well as how much you'd like to top up
 - 🅒🅞🅟 some shoes!
 
+## Main Page
 ![Main Page](https://i.imgur.com/yazQ1L1.png)
+***Totally not dropshipping***
+
+
+## A Cypress Test
+![Cypress Test](https://i.imgur.com/vMvqoJJ.png)
+***A very light e2e test***
 
 ### Project running 👟 on Vue 3, Tailwind, Cypress & Pinia
 That's all. Thanks!
