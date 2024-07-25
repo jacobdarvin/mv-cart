@@ -23,3 +23,6 @@ npm run dev
 ```sh
 npx cypress open
 ```
+
+This of course, has to be run with the Elixir + Phoenix Backend:
+https://github.com/jacobdarvin/mv_cart
