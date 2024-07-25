@@ -37,11 +37,11 @@ To open cypress and run spec.cy.js for a super simple e2e test
 
 ## Main Page
 ![Main Page](https://i.imgur.com/yazQ1L1.png)
-***Totally not dropshipping***
+**100% not dropshipping*
 
 
 ## A Cypress Test
 ![Cypress Test](https://i.imgur.com/vMvqoJJ.png)
-***A very light e2e test***
+*A very light e2e test*
 
 ### Project running 👟 on Vue 3, Tailwind, Cypress & Pinia
