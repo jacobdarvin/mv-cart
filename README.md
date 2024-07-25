@@ -1,10 +1,6 @@
-# mv-cart
+# mv-cart (COP'D Front-end) [Vue 3, Tailwind, Cypress & Pinia]
 
-Hi! This is my entry to the coding assignment thing - Jacob
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Hi all! This is my entry to the coding assignment thing - Jacob
 
 ## Project Setup
 
@@ -18,11 +14,18 @@ npm install
 npm run dev
 ```
 
+### Run the Backend
+
+To run the Phoenix + Elixir Server, install this repository and follow the README instructions there
+https://github.com/jacobdarvin/mv_cart
+
 ### Run Unit Tests with [Cypress]
 
 ```sh
 npx cypress open
 ```
 
-This of course, has to be run with the Elixir + Phoenix Backend:
-https://github.com/jacobdarvin/mv_cart
+That's all. Enjoy!
+
+![alt text]([https://i.imgur.com/Ymj8Wvc.png])
+
