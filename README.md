@@ -1,8 +1,11 @@
 # mv-cart
 
-Hi all! This is my entry to the coding assignment thing - Jacob
 
 ## Project Setup
+
+For this to work, you must have the prerequesite Phoenix server running on http://localhost:4000. View this repository here: https://github.com/jacobdarvin/mv_cart
+
+### Install Dependencies
 
 ```sh
 npm install
@@ -14,20 +17,20 @@ npm install
 npm run dev
 ```
 
-### Run the Backend
-
-To run the Phoenix + Elixir Server, install this repository and follow the README instructions there
-https://github.com/jacobdarvin/mv_cart
-
 ### Run Unit Tests with [Cypress]
 
 ```sh
 npx cypress open
 ```
 
-That's all. Enjoy!
+## The Happy Path
 
-![Product Page](https://i.imgur.com/Ymj8Wvc.png)
+- Create an account in /register
+- This will automatically log you in and insert a user in the database
+- Click on your balance in the top right ($0)
+- Fill in some definitely not real credit card information as well as how much you'd like to top up
+- COP some shoes!
+
 ![Main Page](https://i.imgur.com/yazQ1L1.png)
 
 #### Project running on Vue 3, Tailwind, Cypress & Pinia
