@@ -18,7 +18,7 @@ npm install
 npm run dev
 ```
 
-## Run Unit Tests with [Cypress]
+## Run Unit Tests with Cypress
 
 Run
 
