@@ -52,9 +52,7 @@ describe('Top Up', () => {
 
     cy.get('button[type="submit"]').click()
 
-    cy.on('window:alert', (str) => {
-      expect(str).to.equal('Top-up successful!')
-    })
+    cy.contains('Top-up successful. Enjoy your balance!').should('be.visible')
   })
 })
 

@@ -11,11 +11,11 @@
       </router-link>
     </div>
     <div class="flex flex-col">
-      <div class="flex gap-4 items-center">
-        <router-link to="/cart" class="text-2xl font-bold hover:text-gray-600 underline">
+      <div class="flex gap-4 items-center text-xl">
+        <router-link to="/cart" class="font-bold hover:text-gray-600 underline">
           {{ totalItems }} Cart
         </router-link>
-        <router-link to="/topup" class="text-2xl hover:text-gray-600 underline"
+        <router-link to="/topup" class="hover:text-gray-600 underline"
           >${{ Number(balance).toLocaleString() }}</router-link
         >
       </div>

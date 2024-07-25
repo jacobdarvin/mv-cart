@@ -93,6 +93,9 @@
               </button>
             </div>
           </form>
+          <div v-if="successMessage" class="mt-4 text-emerald-500 font-bold">
+            Top-up successful. Enjoy your balance!
+          </div>
         </div>
       </div>
     </div>
@@ -103,6 +106,7 @@
 import NavBar from '@/components/NavBar.vue'
 import { defineComponent, ref } from 'vue'
 import { useAuthStore } from '@/stores/authStore'
+import router from '@/router'
 
 export default defineComponent({
   components: { NavBar },
@@ -115,6 +119,7 @@ export default defineComponent({
     const expirationDate = ref('')
     const amount = ref<number | null>(null)
     const address = ref('')
+    const successMessage = ref(false)
 
     const handleSubmit = async () => {
       const topUpDetails = {
@@ -142,13 +147,23 @@ export default defineComponent({
           throw new Error('Failed to top-up')
         }
 
-        alert('Top-up successful!')
+        authStore.fetchBalance()
+        successMessage.value = true
       } catch (error) {
         alert('Top-up error!')
       }
     }
 
-    return { cardholderName, cardNumber, cvc, expirationDate, amount, address, handleSubmit }
+    return {
+      cardholderName,
+      cardNumber,
+      cvc,
+      expirationDate,
+      amount,
+      address,
+      handleSubmit,
+      successMessage
+    }
   }
 })
 </script>
