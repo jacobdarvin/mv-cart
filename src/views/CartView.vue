@@ -93,6 +93,7 @@ export default defineComponent({
           }
 
           const data = await response.json()
+          authStore.fetchBalance()
           console.log('Purchase confirmed for:', data)
         }
         productStore.addPurchasedItems(cart.value)
