@@ -56,7 +56,7 @@ describe('Top Up', () => {
   })
 })
 
-describe('Purchasing', () => {
+describe('Purchasing & Cart', () => {
   beforeEach(() => {
     cy.login('1@gmail.com', '123456')
   })
@@ -77,5 +77,18 @@ describe('Purchasing', () => {
 
     cy.url().should('include', '/success')
     cy.contains('Purchase Successful').should('be.visible')
+  })
+})
+
+describe('Purchases', () => {
+  beforeEach(() => {
+    cy.login('1@gmail.com', '123456')
+  })
+
+  it('should be able to open purchases and see products', () => {
+    cy.url().should('eq', 'http://localhost:5173/')
+    cy.get('a').contains('Your Purchases').first().click()
+
+    cy.contains('Purchase ID').should('be.visible')
   })
 })
