@@ -18,13 +18,16 @@ npm install
 npm run dev
 ```
 
-### Run Unit Tests with [Cypress]
+## Run Unit Tests with [Cypress]
+
+Run
 
 ```sh
 npx cypress open
 ```
+To open cypress and run spec.cy.js for a super simple e2e test
 
-### 😄 The Happy Path
+## 😄 The Happy Path
 
 - Create an account in /register
 - This will automatically log you in and insert a user in the database
