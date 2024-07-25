@@ -33,7 +33,7 @@ To open cypress and run spec.cy.js for a super simple e2e test
 - This will automatically log you in and insert a user in the database
 - Click on your balance in the top right ($0)
 - Fill in some ~~definitely not~~ real credit card information as well as how much you'd like to top up
-- COP some shoes!
+- 🅒🅞🅟 some shoes!
 
 ![Main Page](https://i.imgur.com/yazQ1L1.png)
 
