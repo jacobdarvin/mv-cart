@@ -1,7 +1,7 @@
-# mv-cart
+# 🔥 mv-cart
 
 
-## Project Setup
+## ⚙️ Project Setup
 
 For this to work, you must have the prerequesite Phoenix server running on http://localhost:4000. View this repository here: https://github.com/jacobdarvin/mv_cart
 
@@ -23,7 +23,7 @@ npm run dev
 npx cypress open
 ```
 
-## The Happy Path
+## 😄 The Happy Path
 
 - Create an account in /register
 - This will automatically log you in and insert a user in the database
