@@ -3,7 +3,8 @@
 
 ## ⚙️ Project Setup
 
-For this to work, you must have the prerequesite Phoenix server running on http://localhost:4000. View this repository here: https://github.com/jacobdarvin/mv_cart
+For this to work, you must have the pre-requesite Phoenix/Exlixir server running on http://localhost:4000. 
+For more information, clone this repository and follow the README: https://github.com/jacobdarvin/mv_cart
 
 ### Install Dependencies
 
@@ -23,7 +24,7 @@ npm run dev
 npx cypress open
 ```
 
-## 😄 The Happy Path
+### 😄 The Happy Path
 
 - Create an account in /register
 - This will automatically log you in and insert a user in the database
@@ -33,4 +34,5 @@ npx cypress open
 
 ![Main Page](https://i.imgur.com/yazQ1L1.png)
 
-#### Project running on Vue 3, Tailwind, Cypress & Pinia
+### Project running on Vue 3, Tailwind, Cypress & Pinia
+That's all. Thanks!
